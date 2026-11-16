@@ -2,7 +2,7 @@
 title: GitHub Pages 免费托管的边界在哪
 date: 2024-11-10
 description: 能做什么、不能做什么，以及国内访问不稳定时该怎么办。
-category: 部署
+category: 其他
 tags: [GitHub, 笔记]
 draft: false
 ---

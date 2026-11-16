@@ -1,8 +1,8 @@
 ---
 title: 留下点什么
-date: 2025-04-17 23:05:00
+date: 2025-04-17T23:05:00+08:00
 description: 2025 年 4 月 17 日 23:05 写下的随笔。
-category: 随笔
+category: 空想花庭
 tags: [随想]
 draft: false
 ---

@@ -1,4 +1,6 @@
 ---
+import { categories } from '../data/categories';
+
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const { title = '白榆', description = '乱起八遭的一些东西，不知道放哪' } = Astro.props;
 const pageTitle = title === '白榆' ? '白榆' : `${title} - 白榆`;
@@ -30,6 +32,14 @@ const year = new Date().getFullYear();
     </div>
     <nav class="head-menu">
       <a href={`${base}/`}>首页</a>
+      <div class="has-child">
+        <a href={`${base}/categories/`}>分类</a>
+        <div class="sub-menu">
+          {categories.map((category) => (
+            <a href={`${base}/categories/${category.slug}/`}>{category.name}</a>
+          ))}
+        </div>
+      </div>
       <a href={`${base}/archive/`}>归档</a>
       <a href={`${base}/about/`}>关于</a>
     </nav>

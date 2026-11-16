@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PostList from '../../components/PostList.astro';
+import { categories } from '../../data/categories';
+
+export async function getStaticPaths() {
+  return categories.map((category) => ({
+    params: { slug: category.slug },
+    props: { category },
+  }));
+}
+
+const { category } = Astro.props;
+const posts = (await getCollection('posts', ({ data }) => !data.draft && data.category === category.name))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+<Base title={category.name} description={category.description}>
+  <section class="home-title">
+    <h1>{category.name}</h1>
+    <span>{category.description} · {posts.length} 篇</span>
+  </section>
+
+  <section class="home-posts">
+    {posts.length > 0
+      ? <PostList posts={posts} />
+      : <p style="text-align:center; color:#97a1ae; padding-bottom:3em;">这个分类还没有文章。</p>}
+  </section>
+</Base>
