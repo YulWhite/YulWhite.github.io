@@ -1,0 +1,47 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const posts = (await getCollection('posts', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const fmt = (d: Date) =>
+  `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+
+const byYear = new Map<number, typeof posts>();
+for (const post of posts) {
+  const y = post.data.date.getFullYear();
+  if (!byYear.has(y)) byYear.set(y, []);
+  byYear.get(y)!.push(post);
+}
+const years = [...byYear.keys()].sort((a, b) => b - a);
+---
+<Base title="归档">
+  <section class="home-title">
+    <h1>归档</h1>
+    <span>共 {posts.length} 篇</span>
+  </section>
+
+  {years.map((year) => (
+    <section class="archive-year">
+      <h2>{year}</h2>
+      <ul>
+        {byYear.get(year)!.map((post) => (
+          <li>
+            <time>{fmt(post.data.date)}</time>
+            <a href={`${base}/posts/${post.id}/`}>{post.data.title}</a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+</Base>
+
+<style>
+  .archive-year { margin-bottom: 2em; }
+  .archive-year h2 { font-size: 1.2em; color: #4a7fd4; }
+  .archive-year ul { list-style: none; padding: 0; }
+  .archive-year li { display: flex; gap: 1em; padding: .35em 0; border-bottom: 1px dashed rgba(0,0,0,.08); }
+  .archive-year time { color: #97a1ae; font-size: .85em; }
+</style>

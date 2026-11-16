@@ -1,0 +1,99 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const { title = '白榆', description = '乱起八遭的一些东西，不知道放哪' } = Astro.props;
+const pageTitle = title === '白榆' ? '白榆' : `${title} - 白榆`;
+const year = new Date().getFullYear();
+---
+<!DOCTYPE html>
+<html lang="zh-CN" style={`--elm-bg: url('${base}/img/elm.svg')`}>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{pageTitle}</title>
+  <meta name="description" content={description}>
+  <meta property="og:site_name" content="白榆">
+  <meta property="og:title" content={pageTitle}>
+  <meta property="og:description" content={description}>
+  <link rel="icon" href={`${base}/img/elm.svg`} type="image/svg+xml">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href={`${base}/static/kico.css`}>
+  <link rel="stylesheet" href={`${base}/static/single.css`}>
+</head>
+<body>
+  <header>
+    <div class="head-title">
+      <h4><a href={`${base}/`}>白榆</a></h4>
+    </div>
+    <div class="head-action">
+      <div class="toggle-btn"></div>
+      <div class="light-btn"></div>
+    </div>
+    <nav class="head-menu">
+      <a href={`${base}/`}>首页</a>
+      <a href={`${base}/archive/`}>归档</a>
+      <a href={`${base}/about/`}>关于</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="wrap min">
+      <slot />
+    </div>
+  </main>
+
+  <footer>
+    <div class="buttons">
+      <button class="to-top" title="回到页眉"></button>
+    </div>
+    <div class="wrap min">
+      <section class="sub-footer">
+        <p>© {year} <a href={`${base}/`}>白榆</a>. All Rights Reserved. Theme By
+          <a href="https://github.com/Dreamer-Paul/Single" target="_blank" rel="nofollow noopener">Single</a>.
+        </p>
+      </section>
+    </div>
+  </footer>
+
+  <link rel="stylesheet" href={`${base}/pio/static/pio.css`}>
+  <div class="pio-container right static">
+    <div class="pio-action"></div>
+    <canvas id="pio" width="280" height="250"></canvas>
+    <div class="pio-dialog"></div>
+  </div>
+
+  <script src={`${base}/static/kico.js`}></script>
+  <script src={`${base}/static/single.js`}></script>
+  <script is:inline>
+    var single = new Paul_Single({ copyright: true, night: false });
+  </script>
+  <script src={`${base}/pio/static/l2d.js`}></script>
+  <script src={`${base}/pio/static/pio.js`}></script>
+  <script is:inline define:vars={{ base }}>
+    var pio = new Paul_Pio({
+      mode: 'static',
+      hidden: true,
+      content: [],
+      tips: true,
+      model: [
+        base + '/pio/models/witch/model.json',
+        base + '/pio/models/pio/model.json'
+      ]
+    });
+  </script>
+
+  <style is:global>
+    body {
+      background-color: #fbfaf7;
+      background-image: var(--elm-bg);
+      background-size: cover;
+      background-position: right bottom;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+    .head-title h4 a { color: inherit; }
+    .head-title h4 a:hover { text-decoration: none; }
+    .home-title { text-align: center; }
+    .post-item h2 a { color: var(--blue, #4a7fd4); }
+  </style>
+</body>
+</html>

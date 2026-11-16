@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMaxYMax slice">
+  <defs>
+    <filter id="leaf" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+    <filter id="wood" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+    <radialGradient id="shade" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#6f8c72" stop-opacity=".22"/>
+      <stop offset="100%" stop-color="#6f8c72" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <g opacity=".9">
+    <!-- 地面投影 -->
+    <ellipse cx="1570" cy="1045" rx="300" ry="42" fill="url(#shade)" filter="url(#leaf)"/>
+
+    <!-- 树冠 -->
+    <g filter="url(#leaf)">
+      <ellipse cx="1575" cy="300" rx="125" ry="100" fill="#7f9c80" opacity=".55"/>
+      <ellipse cx="1465" cy="360" rx="112" ry="88" fill="#87a488" opacity=".52"/>
+      <ellipse cx="1690" cy="350" rx="118" ry="92" fill="#7b987d" opacity=".50"/>
+      <ellipse cx="1520" cy="435" rx="118" ry="86" fill="#88a589" opacity=".48"/>
+      <ellipse cx="1655" cy="442" rx="112" ry="84" fill="#7d9a7f" opacity=".48"/>
+      <ellipse cx="1582" cy="382" rx="140" ry="108" fill="#83a084" opacity=".46"/>
+      <ellipse cx="1425" cy="300" rx="78" ry="64" fill="#8ca98c" opacity=".42"/>
+      <ellipse cx="1735" cy="285" rx="72" ry="60" fill="#8ca98c" opacity=".40"/>
+      <ellipse cx="1758" cy="408" rx="76" ry="60" fill="#88a589" opacity=".38"/>
+      <ellipse cx="1412" cy="445" rx="70" ry="56" fill="#8ca98c" opacity=".38"/>
+      <ellipse cx="1588" cy="228" rx="86" ry="66" fill="#93af92" opacity=".40"/>
+      <ellipse cx="1490" cy="245" rx="58" ry="48" fill="#97b296" opacity=".32"/>
+      <ellipse cx="1672" cy="238" rx="55" ry="45" fill="#97b296" opacity=".30"/>
+    </g>
+
+    <!-- 树干 -->
+    <g filter="url(#wood)" fill="none" stroke="#6b5b4a" stroke-linecap="round">
+      <path d="M1572 1080 C1568 950 1562 820 1560 700 C1558 640 1560 590 1564 548" stroke-width="44" opacity=".42"/>
+      <path d="M1560 700 C1524 640 1490 600 1452 566" stroke-width="19" opacity=".38"/>
+      <path d="M1562 668 C1604 616 1646 584 1686 558" stroke-width="18" opacity=".36"/>
+      <path d="M1562 606 C1556 556 1558 514 1564 476" stroke-width="12" opacity=".34"/>
+      <path d="M1496 612 C1466 586 1440 566 1414 548" stroke-width="9" opacity=".28"/>
+      <path d="M1630 606 C1662 580 1690 560 1716 544" stroke-width="9" opacity=".28"/>
+      <path d="M1572 1000 C1600 1012 1634 1014 1662 1008" stroke-width="10" opacity=".22"/>
+      <path d="M1568 1000 C1540 1014 1508 1016 1482 1010" stroke-width="10" opacity=".22"/>
+    </g>
+
+    <!-- 零星落叶 -->
+    <g fill="#7f9c80" opacity=".5">
+      <ellipse cx="1300" cy="600" rx="10" ry="5" transform="rotate(-28 1300 600)"/>
+      <ellipse cx="1790" cy="640" rx="9" ry="4" transform="rotate(20 1790 640)"/>
+      <ellipse cx="1360" cy="700" rx="8" ry="4" transform="rotate(-14 1360 700)"/>
+      <ellipse cx="1720" cy="726" rx="8" ry="4" transform="rotate(30 1720 726)"/>
+      <ellipse cx="1245" cy="520" rx="7" ry="3" transform="rotate(10 1245 520)"/>
+    </g>
+  </g>
+</svg>
